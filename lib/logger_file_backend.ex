@@ -96,7 +96,7 @@ defmodule LoggerFileBackend do
   defp format_event(level, msg, ts, md, %{format: format, metadata: keys}) do
     #Logger.Formatter.format(format, level, msg, ts, take_metadata(md, keys))
     pid_str = :io_lib.fwrite('~p', [md[:pid]]) |> to_string
-    JSON.encode! %{level: level, message: msg, pid: pid_str, module: md[:module], function: md[:function], line: md[:line], metadata: metadata}
+    JSON.encode! %{level: level, message: msg, pid: pid_str, module: md[:module], function: md[:function], line: md[:line], metadata: keys}
   end
 
   @doc false
